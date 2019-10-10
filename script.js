@@ -4,11 +4,17 @@ window.addEventListener("load", function () {
    form.addEventListener("submit", function (e) {
       let pilotField = document.querySelector("input[name=pilotName]").value;
       let copilotField = document.querySelector("input[name=copilotName]").value;
-      if (pilotField === "" || copilotField === "") {
+      let fuelField = parseInt(document.querySelector("input[name=fuelLevel").value);
+      let cargoField = parseInt(document.querySelector("input[name=cargoWeight").value);
+
+      if (pilotField === "" || copilotField === "" || fuelField === "" || cargoField === "") {
          alert("All fields are required");
-      } else {
          e.preventDefault();
-      }
+      } else if (typeof (pilotField) !== 'string' || typeof (copilotField) !== 'string' || isNaN(fuelField) === true || isNaN(cargoField) === true) {
+         alert("Enter correct field values");
+         e.preventDefault();
+      } else
+         console.log(pilotField, copilotField, fuelField, cargoField);
    })
 })
 
