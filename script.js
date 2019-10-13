@@ -61,18 +61,20 @@ function readyForLaunch(e) {
 window.addEventListener("load", function () {
    fetch("https://handlers.education.launchcode.org/static/planets.json").then(function (response) {
       response.json().then(function (json) {
-         const div = document.getElementById("missionTarget");
+         let setRandom = json[Math.floor(Math.random() * json.length)];
+
+         let div = document.getElementById("missionTarget");
          // Add HTML that includes the JSON data
          div.innerHTML = `
          <h2>Mission Destination</h2>
             <ol>
-               <li>Name: ${json[1].name}</li>
-               <li>Diameter: ${json[1].diameter}</li>
-               <li>Star: ${json[1].star}</li>
-               <li>Distance from Earth: ${json[1].distance}</li>
-               <li>Number of Moons: ${json[1].moons}</li>
+               <li>Name: ${setRandom.name}</li>
+               <li>Diameter: ${setRandom.diameter}</li>
+               <li>Star: ${setRandom.star}</li>
+               <li>Distance from Earth: ${setRandom.distance}</li>
+               <li>Number of Moons: ${setRandom.moons}</li>
             </ol>
-            <img src="${json[1].image}">
+            <img src="${setRandom.image}">
          `;
       });
    });
