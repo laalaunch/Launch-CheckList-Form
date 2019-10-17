@@ -7,8 +7,8 @@ function isValidInput(e) {
    let fuelLevel = parseInt(document.querySelector("input[name=fuelLevel]").value);
    let cargoWeight = parseInt(document.querySelector("input[name=cargoWeight]").value);
 
-   document.getElementById("pilotStatus").innerHTML = (`Pilot ${pilotName} Ready`);
-   document.getElementById("copilotStatus").innerHTML = (`Co-Pilot ${copilotName} Ready`);
+   document.getElementById("pilotStatus").innerHTML = (`Safe travels, Pilot ${pilotName} you're flight is Ready`);
+   document.getElementById("copilotStatus").innerHTML = (`Safe travels, Co-Pilot ${copilotName} you're flight is Ready`);
 
    if (pilotName === "" || copilotName === "" || fuelLevel === "" || cargoWeight === "") {
       alert("all fields are required");
@@ -23,7 +23,6 @@ function isValidType(pilotName, copilotName, fuelLevel, cargoWeight, e) {
       alert("Make sure to enter valid information for each field");
       e.preventDefault();
    } else {
-      alert("Completed form field entries are valid");
       checkFuelLevel(fuelLevel, cargoWeight, e);
    }
 }
@@ -36,6 +35,7 @@ function checkFuelLevel(fuelLevel, cargoWeight, e) {
       launchStatus.style.color = "red";
       e.preventDefault();
    } else {
+      document.getElementById("fuelStatus").innerHTML = "Fuel level high enough for launch.";
       checkCargoWeight(cargoWeight, e);
    }
 }
@@ -48,6 +48,7 @@ function checkCargoWeight(cargoWeight, e) {
       launchStatus.style.color = "red";
       e.preventDefault();
    } else {
+      document.getElementById("cargoStatus").innerHTML = "Cargo weight low enough for launch.";
       readyForLaunch(e);
    }
 }
@@ -60,7 +61,6 @@ function readyForLaunch(e) {
    launchStatus.style.color = "green";
    let pilot = document.querySelector("input[name=pilotName]").value;
    let copilot = document.querySelector("input[name=copilotName]").value;
-   alert(`${pilot} and ${copilot} your mission has been confrimed. \n\nSafe travels on the journey!`);
    e.preventDefault();
 }
 
