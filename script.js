@@ -23,6 +23,7 @@ function isValidType(pilotName, copilotName, fuelLevel, cargoWeight, e) {
       alert("Make sure to enter valid information for each field");
       e.preventDefault();
    } else {
+      alert("Completed form field entries are valid");
       checkFuelLevel(fuelLevel, cargoWeight, e);
    }
 }
@@ -30,7 +31,7 @@ function isValidType(pilotName, copilotName, fuelLevel, cargoWeight, e) {
 function checkFuelLevel(fuelLevel, cargoWeight, e) {
    if (fuelLevel * 3.785412 < 10000) {
       document.getElementById("faultyItems").style.visibility = "inherit";
-      document.getElementById("fuelStatus").innerHTML = "There is not enough fuel for the journey."
+      document.getElementById("fuelStatus").innerHTML = "There is not enough fuel for the journey.";
       launchStatus.innerHTML = "Shuttle not ready for launch";
       launchStatus.style.color = "red";
       e.preventDefault();
@@ -42,8 +43,8 @@ function checkFuelLevel(fuelLevel, cargoWeight, e) {
 function checkCargoWeight(cargoWeight, e) {
    if (cargoWeight * 0.45359237 > 10000) {
       document.getElementById("faultyItems").style.visibility = "inherit";
-      document.getElementById("cargoStatus").innerHTML = "There is too much mass for the shuttle to take off."
-      launchStatus.innerHTML = "Shuttle not ready for launch";
+      document.getElementById("cargoStatus").innerHTML = "There is too much mass for the shuttle to take off.";
+      launchStatus.innerHTML = "Shuttle is not ready for launch";
       launchStatus.style.color = "red";
       e.preventDefault();
    } else {
@@ -52,9 +53,14 @@ function checkCargoWeight(cargoWeight, e) {
 }
 
 function readyForLaunch(e) {
+   document.getElementById("fuelStatus").innerHTML = "Fuel level high enough for launch.";
+   document.getElementById("cargoStatus").innerHTML = "Cargo weight low enough for launch.";
    document.getElementById("faultyItems").style.visibility = "inherit";
    launchStatus.innerHTML = "Shuttle is ready for launch";
    launchStatus.style.color = "green";
+   let pilot = document.querySelector("input[name=pilotName]").value;
+   let copilot = document.querySelector("input[name=copilotName]").value;
+   alert(`${pilot} and ${copilot} your mission has been confrimed. \n\nSafe travels on the journey!`);
    e.preventDefault();
 }
 
